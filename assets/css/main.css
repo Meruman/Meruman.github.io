@@ -159,6 +159,11 @@ textarea {
 	appearance: none;
 }
 
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
 /* Row */
 
 .row {
@@ -1817,7 +1822,9 @@ ul.actions li:first-child {
 }
 
 .icon>.label {
-	display: none;
+    display: block;
+	font-size: 50%;
+	margin-top: -60%;
 }
 
 /* Nav */
@@ -2862,6 +2869,30 @@ ul.divided li:first-child {
 	}
 }
 
+.footer-interests {
+	display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    width: 90%;
+}
+
+.footer-interests img {
+    border: 1px solid #222;
+    border-radius: 12px;
+    display: inline-block;
+	max-height: 250px;
+	min-height: 150px;
+    max-width: 320px;
+    min-width: 270px;
+    transition: border .3s;
+}
+
+@media only screen and (min-width: 768px){
+	.footer-interests img:not(:last-child) {
+		margin: 0 1.8rem 0 0;
+	}
+}
 
 
 
@@ -4079,9 +4110,10 @@ hr:after {
 ul.icons {
 	position: relative;
 	background: rgba(128, 128, 128, 0.05);
+	color: #999;
 	border-radius: 4em;
 	display: inline-block;
-	padding: 0.35em 0.75em 0.35em 0.75em;
+	padding: 0em 0.75em 0.35em 0.75em;
 	font-size: 1.25em;
 	cursor: default;
 	list-style: none;
