@@ -1,0 +1,10 @@
+<!-- Nav -->
+<nav id="nav">
+    {{ range .Site.Menus.mainmenu }}
+    <a href="{{ .URL }}" class="icon solid fa-home"><span>{{ .Name }}</span></a>
+    {{ end }}
+    <!-- <a href="#portfolio" class="icon solid fa-folder"><span>Portfolio</span></a>
+    <a href="#blog" class="icon solid fa-blog" style="padding-left: 3%;"><span>Blog</span></a>
+    <a href="#games" class="icon solid fa-gamepad"><span>Games</span></a>
+    <a href="#aboutme" class="icon solid fa-user-tie"><span>About</span></a> -->
+</nav>

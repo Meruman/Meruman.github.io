@@ -3,7 +3,12 @@ title: "My First Post"
 date: 2023-02-22T10:58:43+01:00
 draft: false
 tags: ["foo", "bar"]
+
+aliases:
+    - /posts/first-post/
 ---
+
+
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua. Pellentesque eu tincidunt tortor 
