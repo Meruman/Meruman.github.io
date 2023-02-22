@@ -1,4 +1,4 @@
-baseURL = 'https://Meruman.github.io/'
+baseURL = 'https://meruman.github.io/'
 languageCode = 'en-us'
 title = 'Martin MeRu'
 theme = 'PortfolioTheme'
