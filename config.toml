@@ -1,0 +1,4 @@
+baseURL = 'https://Meruman.github.io/'
+languageCode = 'en-us'
+title = 'Martin MeRu'
+theme = 'PortfolioTheme'

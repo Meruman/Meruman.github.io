@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+{{- partial "head.html" . -}}
+
+<body class="is-preload">
+    <div id="wrapper">
+        {{- partial "header.html" . -}}
+        <div id="main">
+            {{- block "main" . }}{{- end }}
+        </div>
+        {{- partial "footer.html" . -}}
+    </div>
+    {{- partial "script.html" . -}}
+</body>
+
+</html>

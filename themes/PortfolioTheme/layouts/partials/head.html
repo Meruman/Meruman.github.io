@@ -1,0 +1,13 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <noscript>
+		<link rel="stylesheet" href="/css/noscript.css" />
+	</noscript>
+    {{ $title := print .Site.Title " | " .Title }}
+    {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+    <title>{{ $title }}</title>
+</head>
