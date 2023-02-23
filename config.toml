@@ -5,8 +5,7 @@ theme = 'PortfolioTheme'
 [markup.highlight]
   codeFences = false
 
-[markup]
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 2
+[markup.tableOfContents]
+  endLevel = 3
+  ordered = false
+  startLevel = 3

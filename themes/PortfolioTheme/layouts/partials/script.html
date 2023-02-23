@@ -16,44 +16,76 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
+
+<script>const main_section = document.querySelector("#main");
+</script>
 {{ range .Site.RegularPages }}
 {{ $blogTitle := .Title }}
 {{ $blogContent := .Content }}
 {{ $blogHeaderImage := .Params.featureImage }}
 {{ $tocEnabled := .Params.toc }}
-{{ $tocEnabled := .Page. }}
 <script>
   $(document).ready(function () {
-    $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function () {
-      {{/*  var blogSlug = $(this).data("blog-slug");
-      console.log("Blog slug: " + blogSlug);  */}}
-      {{/*  console.log({{ $blogContent }});  */}}
-        console.log({{ $tocEnabled }});
-    // Update the modal content with the blog content
-    $(".blog-entry-content").html('{{ $blogContent }}');
-    
-    
-    //Update title
-    $(".modal-title").html('{{ $blogTitle }}');
+    $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function (e) {
+      e.preventDefault();
+      {{/*  console.log("Hiding overflow in body")
+      const scrollY = document.body.style.top;  */}}
+      document.body.style.overflow = "hidden";
+      
+      {{/*  document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;  */}}
 
-    //Update image
-    $(".PortfolioImage").attr("src", '{{ $blogHeaderImage }}');
 
-    // Show the modal
-    $(".modal-container").fadeIn();
+      {
+        {/*  var blogSlug = $(this).data("blog-slug");
+      console.log("Blog slug: " + blogSlug);  */}
+      }
+      { {/*  console.log({{ $blogContent }});  */ } }
+      { {/*  console.log({{ $tocEnabled }});  */ } }
+      // Update the modal content with the blog content
+      $(".blog-entry-content").html('{{ $blogContent }}');
+
+
+      //Update title
+      $(".modal-title").html('{{ $blogTitle }}');
+
+      //Update image
+      $(".PortfolioImage").attr("src", '{{ $blogHeaderImage }}');
+
+      // Show the modal
+      $(".modal-container").fadeIn();
+      $(".modal-container").scrollTop(0);
+      
+
+      
+
+    });
+
     // Add an event listener to the close button
-    $(".close").click(function(){
+    $(".close").click(function () {
+      document.body.style.overflow = "auto";
+      {{/*  document.body.style.overflow = "auto";
+      console.log(scrollY)  */}}
+      {{/*  document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);  */}}
       $(".modal-container").fadeOut();
     });
+
+    // Hide the modal when the user clicks outside the modal
+    $(".modal-container").click(function (event) {
+      if (event.target == this) {
+        document.body.style.overflow = "auto";
+        {{/*  document.body.style.overflow = "auto";
+        console.log(scrollY)  */}}
+        {{/*  document.body.style.position = '';
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);  */}}
+        $(".modal-container").fadeOut();
+      }
+    });
+
     
   });
-
-  // Hide the modal when the user clicks outside the modal
-  $(".modal-container").click(function(event){
-    if (event.target == this) {
-      $(".modal-container").fadeOut();
-    }
-  });
-});
 </script>
 {{ end }}

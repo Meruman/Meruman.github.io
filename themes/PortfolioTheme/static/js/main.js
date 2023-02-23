@@ -238,7 +238,7 @@ function initCarousels($active_panel) {
 			.addClass('active');
 
 		// Reset scroll.
-		$window.scrollTop(0);
+		/* $window.scrollTop(0); */
 
 	})();
 
@@ -300,7 +300,7 @@ function initCarousels($active_panel) {
 				.css('min-height', $panel.outerHeight() + 'px');
 
 			// Reset scroll.
-			$window.scrollTop(0);
+			/* $window.scrollTop(0); */
 
 			// Delay.
 			window.setTimeout(function () {
