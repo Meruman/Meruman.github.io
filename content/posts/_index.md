@@ -2,7 +2,6 @@
 title: "My First Post"
 date: 2023-02-22T10:58:43+01:00
 draft: false
-tags: ["foo", "bar"]
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 

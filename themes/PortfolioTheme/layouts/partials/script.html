@@ -11,3 +11,37 @@
 <!-- Carousel -->
 <script src="/js/jquery.scrollex.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{{ range .Site.RegularPages }}
+{{/*  {{ $blogSlug := .File.LogicalName }}  */}}
+{{ $blogContent := .Content }}
+<script>
+  $(document).ready(function () {
+    console.log('jQuery code is working!');
+    $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function () {
+      var blogSlug = $(this).data("blog-slug");
+      console.log("Blog slug: " + blogSlug);
+      console.log({{ $blogContent }});
+
+    // Update the modal content with the blog content
+    $(".blog-entry-content").html('{{ $blogContent }}');
+
+    // Show the modal
+    $(".modal-container").fadeIn();
+    // Add an event listener to the close button
+    $(".close").click(function(){
+      $(".modal-container").fadeOut();
+    });
+    
+  });
+
+  // Hide the modal when the user clicks outside the modal
+  $(".modal-container").click(function(event){
+    if (event.target == this) {
+      $(".modal-container").fadeOut();
+    }
+  });
+});
+</script>
+{{ end }}
