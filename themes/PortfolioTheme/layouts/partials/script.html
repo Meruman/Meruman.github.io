@@ -13,19 +13,31 @@
 <script src="/js/main.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
 {{ range .Site.RegularPages }}
-{{/*  {{ $blogSlug := .File.LogicalName }}  */}}
+{{ $blogTitle := .Title }}
 {{ $blogContent := .Content }}
+{{ $blogHeaderImage := .Params.featureImage }}
+{{ $tocEnabled := .Params.toc }}
+{{ $tocEnabled := .Page. }}
 <script>
   $(document).ready(function () {
-    console.log('jQuery code is working!');
     $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function () {
-      var blogSlug = $(this).data("blog-slug");
-      console.log("Blog slug: " + blogSlug);
-      console.log({{ $blogContent }});
-
+      {{/*  var blogSlug = $(this).data("blog-slug");
+      console.log("Blog slug: " + blogSlug);  */}}
+      {{/*  console.log({{ $blogContent }});  */}}
+        console.log({{ $tocEnabled }});
     // Update the modal content with the blog content
     $(".blog-entry-content").html('{{ $blogContent }}');
+    
+    
+    //Update title
+    $(".modal-title").html('{{ $blogTitle }}');
+
+    //Update image
+    $(".PortfolioImage").attr("src", '{{ $blogHeaderImage }}');
 
     // Show the modal
     $(".modal-container").fadeIn();

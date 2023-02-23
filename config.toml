@@ -2,3 +2,11 @@ baseURL = 'https://meruman.github.io/'
 languageCode = 'en-us'
 title = 'Martin MeRu'
 theme = 'PortfolioTheme'
+[markup.highlight]
+  codeFences = false
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
