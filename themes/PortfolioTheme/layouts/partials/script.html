@@ -24,24 +24,57 @@
 {{ $blogContent := .Content }}
 {{ $blogHeaderImage := .Params.featureImage }}
 {{ $tocEnabled := .Params.toc }}
+{{ $blogImages := .Params.blogImages }}
 <script>
   $(document).ready(function () {
     $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function (e) {
       e.preventDefault();
-      {{/*  console.log("Hiding overflow in body")
-      const scrollY = document.body.style.top;  */}}
       document.body.style.overflow = "hidden";
-      
-      {{/*  document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;  */}}
+
+      {{/*  // Get the list of images from the front matter
+      let blogImages = '{{ .Params.images }}';
+
+      if (blogImages) {
+        blogImages = blogImages.split(",");
+        let imagesHtml = "";
+        blogImages.forEach(function (image) {
+            imagesHtml += `<img src="${image}" />`;
+        });
+        $(".left-column").html(imagesHtml);
+    }  */}}
+      // Clear any existing images in the left column
+      $(".left-column").empty();
+
+      {{/*  let imagesHtml = "";
+      {{ range $blogImages := $blogImages }}
+      console.log("Appending")
+      imagesHtml += `<img src="${blogImages}" />`;
+      {{ end }}
+      $(".left-column").html(imagesHtml);
+  */}}
+
+  if ({{ $blogImages }}) {
+    document.getElementById('blog-colums').className = 'two-columns';
+    {{/*  $(".two-columns").style.grid-template-columns = "1fr 2fr";  */}}
+    let imagesHtml = "";
+    {{ $blogImages }}.forEach(function (image) {
+        imagesHtml += `<img src="${image}" />`;
+    });
+    $(".left-column").html(imagesHtml);
+}
+else{
+  document.getElementById('blog-colums').className = 'one-column';}
 
 
-      {
-        {/*  var blogSlug = $(this).data("blog-slug");
-      console.log("Blog slug: " + blogSlug);  */}
-      }
-      { {/*  console.log({{ $blogContent }});  */ } }
-      { {/*  console.log({{ $tocEnabled }});  */ } }
+      {{/*  // Add an <img> element for each image to the left column
+      for (let i = 0; i < blog_images.length; i++) {
+        var display_image = document.createElement("img");
+        display_image.src = blog_images[i];
+        display_image.alt = "Image " + (i + 1);
+        $(".left-column").append(display_image);
+      }  */}}
+
+
       // Update the modal content with the blog content
       $(".blog-entry-content").html('{{ $blogContent }}');
 
@@ -61,29 +94,19 @@
 
     });
 
-    // Add an event listener to the close button
-    $(".close").click(function () {
-      document.body.style.overflow = "auto";
-      {{/*  document.body.style.overflow = "auto";
-      console.log(scrollY)  */}}
-      {{/*  document.body.style.position = '';
-      document.body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);  */}}
-      $(".modal-container").fadeOut();
-    });
+  // Add an event listener to the close button
+  $(".close").click(function () {
+    document.body.style.overflow = "auto";
+    $(".modal-container").fadeOut();
+  });
 
-    // Hide the modal when the user clicks outside the modal
-    $(".modal-container").click(function (event) {
-      if (event.target == this) {
-        document.body.style.overflow = "auto";
-        {{/*  document.body.style.overflow = "auto";
-        console.log(scrollY)  */}}
-        {{/*  document.body.style.position = '';
-        document.body.style.top = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);  */}}
-        $(".modal-container").fadeOut();
-      }
-    });
+  // Hide the modal when the user clicks outside the modal
+  $(".modal-container").click(function (event) {
+    if (event.target == this) {
+      document.body.style.overflow = "auto";
+      $(".modal-container").fadeOut();
+    }
+  });
 
     
   });
