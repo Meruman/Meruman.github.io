@@ -30,6 +30,8 @@
     $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function (e) {
       e.preventDefault();
       document.body.style.overflow = "hidden";
+      //Update image
+      $(".PortfolioImage").attr("src", '{{ $blogHeaderImage }}');
 
       {{/*  // Get the list of images from the front matter
       let blogImages = '{{ .Params.images }}';
@@ -81,9 +83,6 @@ else{
 
       //Update title
       $(".modal-title").html('{{ $blogTitle }}');
-
-      //Update image
-      $(".PortfolioImage").attr("src", '{{ $blogHeaderImage }}');
 
       // Show the modal
       $(".modal-container").fadeIn();
