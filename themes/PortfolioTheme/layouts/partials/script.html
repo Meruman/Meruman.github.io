@@ -20,6 +20,8 @@
 {{ $blogHeaderImage := .Params.featureImage }}
 {{ $tocEnabled := .Params.toc }}
 {{ $blogImages := .Params.blogImages }}
+{{ $sourceIcons := .Params.downloadIcons }}
+{{ $sourcePage := .Params.downloadPages }}
 <script>
   $(document).ready(function () {
     $(".blog-entry[data-blog-id='{{ .Params.id }}']").click(function (e) {
@@ -27,11 +29,27 @@
       document.body.style.overflow = "hidden";
       //Update image
       $(".PortfolioImage").attr("src", '{{ $blogHeaderImage }}');
+      
+      document.getElementById('download-icon').textContent="";
+      document.getElementById('download-icon').innerHTML="";
+
+      if ({{ $sourceIcons }}) {
+        let iconsHTML = "Check it in: ";
+        let iconIndex = 0;
+        {{ $sourceIcons }}.forEach(function (icons) {
+          let sourceP = {{ $sourcePage }}[iconIndex];
+          iconsHTML += `&nbsp; &nbsp; <a href="${sourceP}" class="icon brands fa-${icons}" style="font-size: x-large;"/>`;
+          iconIndex = iconIndex+1;
+        });
+        document.getElementById('download-icon').innerHTML=iconsHTML;
+    }
+    else{
+      document.getElementById('download-icon').innerHTML="";}
+
       // Clear any existing images in the left column
       $(".left-column").empty();
   if ({{ $blogImages }}) {
     document.getElementById('blog-colums').className = 'two-columns';
-    {{/*  $(".two-columns").style.grid-template-columns = "1fr 2fr";  */}}
     let imagesHtml = "";
     {{ $blogImages }}.forEach(function (image) {
         imagesHtml += `<img src="${image}" />`;
