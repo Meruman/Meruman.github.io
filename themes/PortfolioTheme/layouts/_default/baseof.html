@@ -2,6 +2,27 @@
 <html>
 {{- partial "head.html" . -}}
 
+<script>function preloadImages(srcs) {
+    if (!preloadImages.cache) {
+      preloadImages.cache = [];
+    }
+    var img;
+    for (var i = 0; i < srcs.length; i++) {
+      img = new Image();
+      img.src = srcs[i];
+      preloadImages.cache.push(img);
+    }
+  }</script>
+{{ range .Site.RegularPages }}
+{{ $blogImages := .Params.blogImages }}
+<script>
+  if ({{ $blogImages }}) {
+    // then to call it, you would use this
+    preloadImages({{ $blogImages }});
+  }
+</script>
+{{ end }}
+
 <body class="is-preload">
   <div id="wrapper">
     {{- partial "header.html" . -}}
@@ -20,8 +41,8 @@
           <header class="modal-header">
             <h2 class="modal-title"></h2>
             <p id="download-icon" class="date">Find it in: </p>
-            {{/*  <p class="date">February 24, 2023</p>  */}}
-            {{/*  <a style="width: 100px;"></a>  */}}
+            {{/* <p class="date">February 24, 2023</p> */}}
+            {{/* <a style="width: 100px;"></a> */}}
           </header>
           <div style="text-align:center;">
             <img class="PortfolioImage" style="width: 40%;" />
