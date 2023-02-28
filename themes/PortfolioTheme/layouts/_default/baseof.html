@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 {{- partial "head.html" . -}}
-{{- partial "initcache.html" . -}}
-
 <body class="is-preload">
   <div id="wrapper">
     {{- partial "header.html" . -}}
@@ -12,6 +10,7 @@
     {{- partial "footer.html" . -}}
   </div>
   {{- partial "script.html" . -}}
+  {{- partial "initcache.html" . -}}
 
   <div class="modal-container">
     <div class="modal" id="blog-modal">

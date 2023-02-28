@@ -1,20 +1,21 @@
-<script defer>function preloadImages(srcs) {
-  if (!preloadImages.cache) {
-    preloadImages.cache = [];
-  }
-  var img;
-  for (var i = 0; i < srcs.length; i++) {
-    img = new Image();
-    img.src = srcs[i];
-    preloadImages.cache.push(img);
-  }
-}</script>
+
+<script> let buffimages = []; </script>
+
 {{ range .Site.RegularPages }}
 {{ $blogImages := .Params.blogImages }}
-<script defer>
-  if ({{ $blogImages }}.length > 3) {
+<script>
+
+  if ({{ $blogImages }} && {{ $blogImages }}.length > 3) {
     // then to call it, you would use this
-    preloadImages({{ $blogImages }});
+    buffimages.push({{ $blogImages }});
   }
 </script>
 {{ end }}
+
+<script>
+  let div = document.createElement("div");
+  div.id = "div_id" ;
+  div.className = "cache-urls";
+  div.dataset.image = buffimages;
+  document.body.appendChild(div); 
+</script>
