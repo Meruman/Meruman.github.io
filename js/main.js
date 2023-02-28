@@ -33,11 +33,29 @@
 		xsmall: [null, '360px']
 	});
 
+	function preloadImages(srcs) {
+		if (!preloadImages.cache) {
+		  preloadImages.cache = [];
+		}
+		var img;
+		for (var i = 0; i < srcs.length; i++) {
+		  img = new Image();
+		  img.src = srcs[i];
+		  preloadImages.cache.push(img);
+		}
+	  }
+
 	// Play initial animations on page load.
 	$window.on('load', function () {
 		window.setTimeout(function () {
 			$body.removeClass('is-preload');
 		}, 300);
+
+		  var local_blog_images = document.querySelector(".cache-urls");
+		  var list_images_blog = local_blog_images.dataset.image;
+		  list_images_blog = list_images_blog.split(',');
+		  preloadImages(list_images_blog);
+		  
 	});
 
 	// Nav.
