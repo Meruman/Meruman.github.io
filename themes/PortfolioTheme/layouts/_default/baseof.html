@@ -24,16 +24,6 @@
   </div>
   {{- partial "script.html" . -}}
 
-  {{ range .Site.RegularPages }}
-  {{ $blogImages := .Params.blogImages }}
-  <script>
-    if ({{ $blogImages }}) {
-      // then to call it, you would use this
-      preloadImages({{ $blogImages }});
-    }
-  </script>
-  {{ end }}
-
   <div class="modal-container">
     <div class="modal" id="blog-modal">
       <span class="close">&times;</span>
@@ -63,5 +53,15 @@
     </div>
   </div>
 </body>
+
+{{ range .Site.RegularPages }}
+  {{ $blogImages := .Params.blogImages }}
+  <script>
+    if ({{ $blogImages }}) {
+      // then to call it, you would use this
+      preloadImages({{ $blogImages }});
+    }
+  </script>
+  {{ end }}
 
 </html>
