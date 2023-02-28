@@ -1,4 +1,4 @@
-<script>function preloadImages(srcs) {
+<script defer>function preloadImages(srcs) {
   if (!preloadImages.cache) {
     preloadImages.cache = [];
   }
@@ -12,7 +12,7 @@
 {{ range .Site.RegularPages }}
 {{ $blogImages := .Params.blogImages }}
 <script defer>
-  if ({{ $blogImages }}) {
+  if ({{ $blogImages }}.length > 3) {
     // then to call it, you would use this
     preloadImages({{ $blogImages }});
   }
