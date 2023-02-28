@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html>
 {{- partial "head.html" . -}}
-
-<script>function preloadImages(srcs) {
-    if (!preloadImages.cache) {
-      preloadImages.cache = [];
-    }
-    var img;
-    for (var i = 0; i < srcs.length; i++) {
-      img = new Image();
-      img.src = srcs[i];
-      preloadImages.cache.push(img);
-    }
-  }</script>
+{{- partial "initcache.html" . -}}
 
 <body class="is-preload">
   <div id="wrapper">
@@ -49,19 +38,11 @@
           </div>
         </article>
       </section>
-
     </div>
   </div>
+
 </body>
 
-{{ range .Site.RegularPages }}
-  {{ $blogImages := .Params.blogImages }}
-  <script>
-    if ({{ $blogImages }}) {
-      // then to call it, you would use this
-      preloadImages({{ $blogImages }});
-    }
-  </script>
-  {{ end }}
+
 
 </html>
